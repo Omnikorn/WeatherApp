@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>The weather dashboard</title>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+			crossorigin="anonymous"
+		/>
+		<link rel="stlesheet" href="/assests/css/style.css" />
+	</head>
+	<body>
+		<header class="jmbotron-fluid">
+			<h1>Weather Dashboard</h1>
+		</header>
+		<main class="container-fluid">
+			<div class="row">
+				<section class="col-4">
+					<form class="form-inline">
+						<label class="sr-only" for="city name"
+							>Name</label
+						>
+						<input
+							type="text"
+							class="form-control mb-2 mr-sm-2"
+							id="cityName"
+							placeholder="City name"
+						/>
+						<button
+							type="submit"
+							class="btn btn-primary mb-2"
+                            id="submit_btn"
+						>
+							Submit
+						</button>
+					</form>
+					<ul>
+						cities will appear here
+					</ul>
+				</section>
+				<section class="col-8">
+					<div class="row">
+						<h2>
+							<span class="city name">city name</span>
+						</h2>
+					</div>
+				</section>
+			</div>
+		</main>
+        <script src="/assests/js/script.js"></script>
+	</body>
+</html>
