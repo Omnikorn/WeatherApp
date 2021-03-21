@@ -12,16 +12,15 @@
 			rel="stylesheet"
 			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-			crossorigin="anonymous"
-		/>
-		<link rel="stlesheet" href="/assests/css/style.css" />
+			crossorigin="anonymous"/>
+		<link rel="stylesheet" href="/assests/css/style.css" />
 	</head>
 	<body>
 		<header class="jmbotron-fluid">
 			<h1>Weather Dashboard</h1>
-            <h2><span id="test"></span></h2>
+			<h2><span id="test"></span></h2>
 		</header>
-		<main class="container-fluid">
+		<main class="bkg container-fluid">
 			<div class="row">
 				<section class="col-4">
 					<form class="form-inline">
@@ -37,7 +36,7 @@
 						<button
 							type="submit"
 							class="btn btn-primary mb-2"
-                            id="submit_btn"
+							id="submit_btn"
 						>
 							Submit
 						</button>
@@ -48,13 +47,93 @@
 				</section>
 				<section class="col-8">
 					<div class="row">
-						<h2>
-							<span class="city name">city name</span>
-						</h2>
+						<div>
+							<h1>
+								<span class="city name">city name</span>
+							</h1>
+							<h3>Temp= <span class="temp"></span></h3>
+							<h3>
+								Humidity= <span class="humidity"></span>
+							</h3>
+							<h3>
+								Wind Spead= <span class="wind"></span>
+							</h3>
+							<h3>UV Index <span class="uv"></span></h3>
+						</div>
+						>
+					</div>
+					<div class="row">
+						<div
+							class="card mb-3"
+							style="max-width: 12rem"
+						>
+							<!-- <div class="card-header">date</div> -->
+							<div class="card-body">
+								<h5 class="card-title">Light card title</h5>
+								<p class="card-text">
+									Temp: 
+								</p>
+                                <p> Humidity:</p>
+							</div>
+						</div>
+						<div
+							class="card bg-light mb-3"
+							style="max-width: 12rem"
+						>
+							<!-- <div class="card-header">date</div> -->
+							<div class="card-body">
+								<h5 class="card-title">Light card title</h5>
+								<p class="card-text">
+                                    Temp:
+								</p>
+                                <p>Humidity</p>
+							</div>
+						</div>
+						<div
+							class="card bg-light mb-3"
+							style="max-width: 12rem"
+						>
+							<!-- <div class="card-header">date</div> -->
+							<div class="card-body">
+								<h5 class="card-title">Light card title</h5>
+								<p class="card-text">
+									Temp:
+								</p>
+                                <p>Humidity:</p>
+                            
+							</div>
+						</div>
+						<div
+							class="card bg-light mb-3"
+							style="max-width: 12rem"
+						>
+							<!-- <div class="card-header">date</div> -->
+							<div class="card-body">
+								<h5 class="card-title">Light card title</h5>
+								<p class="card-text">
+									Temp:
+								</p>
+                                <p>Humidity:
+                            
+                                </p>
+							</div>
+						</div>
+						<div
+							class="card bg-light mb-3"
+							style="max-width: 12rem"
+						>
+							<!-- <div class="card-header">date</div> -->
+							<div class="card-body">
+								<h5 class="card-title">Light card title</h5>
+								<p class="card-text">
+									Temp:</p>
+                                <p>Humidity:</p>
+							</div>
+						</div>
 					</div>
 				</section>
 			</div>
 		</main>
-        <script src="/assests/js/script.js"></script>
+		<!-- <script src="/assests/js/script.js"></script> -->
 	</body>
 </html>
