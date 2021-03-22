@@ -4,6 +4,14 @@ var submitEl = document.querySelector("#submit_btn")
 var APPID = "5529346d7fb490d9f9af910d01a074f0"
 var palyEl=""
 var testEl=document.querySelector("#test")
+var tempEl=document.querySelector("#temp");
+var temp=""
+var humEl=document.querySelector("#humidity");
+var humidity=""
+var windEl=document.querySelector("#wind");
+var wind=""
+var uvEl=document.querySelector("#uv");
+var uvi=""
 // functions
 
 // function handleSearch(event){
@@ -35,8 +43,19 @@ function getData() {
             console.log(typeof(data));
             console.log(data.current.weather[0].description);
             palyEl=data.current.weather[0].description;
-            testEl.textContent=(palyEl)
-            
+            testEl.textContent=(palyEl);
+            temp=data.current.temp;
+            console.log("temp: "+ temp)
+            tempEl.textContent=(temp);
+            humidity=data.current.humidity;
+            console.log("humidity: "+ humidity)
+            humEl.textContent=(humidity);
+            wind=data.current.wind_speed;
+            console.log("wind: "+ wind)
+            windEl.textContent=(wind);
+            uvi=data.current.uvi
+            console.log("uvi: "+ uvi)
+            uvEl.textContent=(uvi)
 		})
 }
 
