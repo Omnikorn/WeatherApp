@@ -15,6 +15,9 @@ var uvi = ""
 var citylistEl = document.querySelector("#list_of_cities")
 var listOfCities = []
 var cities = []
+var date=""
+var dateEl= document.querySelector("#date")
+var cityfinalEl= document.querySelector("#citynamefinal")
 // functions
 
 function handleSearch(event) {
@@ -29,12 +32,12 @@ function handleSearch(event) {
 	citylist(cityName);
     getStoreCities();
     writeList();
-	// getData();
+	getData();
 }
 
 function createURL() {
 	var cityURL =
-		"api.openweathermap.org/data/2.5/weather?id=" +
+		"https://api.openweathermap.org/data/2.5/weather?id=" +
 		cityName.value +
 		"&appid=" +
 		APPID
@@ -75,34 +78,40 @@ function writeList() {
 	}
 }
 
-// function getData() {
-// fetch(
-// 	"https://api.openweathermap.org/data/2.5/onecall?lat=53.5&lon=2.6&appid=5529346d7fb490d9f9af910d01a074f0"
-// 	// )
-// 		.then(function (response) {
-// 			return response.json();
-// 		})
-// 		.then(function (data) {
-// 			console.log("response is: " + data);
-//             console.log(typeof(data));
-//             console.log(data.current.weather[0].description);
-//             palyEl=data.current.weather[0].description;
-//             testEl.textContent=(palyEl);
-//             temp=data.current.temp;
-//             console.log("temp: "+ temp)
-//             tempEl.textContent=(temp);
-//             humidity=data.current.humidity;
-//             console.log("humidity: "+ humidity)
-//             humEl.textContent=(humidity);
-//             wind=data.current.wind_speed;
-//             console.log("wind: "+ wind)
-//             windEl.textContent=(wind);
-//             uvi=data.current.uvi
-//             console.log("uvi: "+ uvi)
-//             uvEl.textContent=(uvi)
-// 		})
-// }
+function getData(){ 
+fetch("https://api.openweathermap.org/data/2.5/onecall?lat=53.5&lon=2.6&appid=5529346d7fb490d9f9af910d01a074f0")
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+            cityfinalEl.textContent=(cityName.value)
+			console.log("response is: " + data);
+            console.log(typeof(data));
+            console.log(data.current.weather[0].description);
+            palyEl=data.current.weather[0].description;
+            testEl.textContent=(palyEl);
+            date=data.current.dt;
+            dateEl.textContent=(date);
+            temp=data.current.temp;
+            console.log("temp: "+ temp)
+            tempEl.textContent=(temp);
+            humidity=data.current.humidity;
+            console.log("humidity: "+ humidity)
+            humEl.textContent=(humidity);
+            wind=data.current.wind_speed;
+            console.log("wind: "+ wind)
+            windEl.textContent=(wind);
+            uvi=data.current.uvi
+            console.log("uvi: "+ uvi)
+            uvEl.textContent=(" "+uvi+" ")
+                if (uvi>= 6){
+                    uvEl.setAttribute("style", "background-color:red");
+                } else if (uvi < 6 && uvi >= 3) {
+                    uvEl.setAttribute("style","background-color: yellow");
+                } else { uvEl.setAttribute("style","background-color: green")}
+		})
+    }
 
 // button functions
 submitEl.addEventListener("click", handleSearch)
-// getData()
+getData()
