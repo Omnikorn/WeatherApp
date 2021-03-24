@@ -18,6 +18,8 @@ var cities = []
 var date=""
 var dateEl= document.querySelector("#date")
 var cityfinalEl= document.querySelector("#citynamefinal")
+var iconEl=document.querySelector("#icon");
+var iconJS=""
 // functions
 
 function handleSearch(event) {
@@ -38,7 +40,7 @@ function handleSearch(event) {
 function createURL() {
 	var cityURL =
 		"https://api.openweathermap.org/data/2.5/weather?id=" +
-		cityName.value +
+		cityName.textContent +
 		"&appid=" +
 		APPID
 	console.log(cityURL)
@@ -90,6 +92,11 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat=53.5&lon=2.6&appid=55
             console.log(data.current.weather[0].description);
             palyEl=data.current.weather[0].description;
             testEl.textContent=(palyEl);
+			iconJS=data.current['weather'][0]['icon'];
+			console.log("icone code= " + iconJS);
+			var iconURL="http://openweathermap.org/img/w/"+iconJS+".png"
+			iconEl.setAttribute("src", iconURL);
+			
             date=data.current.dt;
             dateEl.textContent=(date);
             temp=data.current.temp;
@@ -114,4 +121,12 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat=53.5&lon=2.6&appid=55
 
 // button functions
 submitEl.addEventListener("click", handleSearch)
+citylistEl.addEventListener("click",function(event){
+	event.preventDefault;
+	cityName=event.target.textContent;
+	createURL();
+	getData();
+
+})
+
 getData()
