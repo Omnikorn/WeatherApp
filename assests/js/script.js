@@ -20,27 +20,31 @@ var dateEl= document.querySelector("#date")
 var cityfinalEl= document.querySelector("#citynamefinal")
 var iconEl=document.querySelector("#icon");
 var iconJS=""
+var lat=""
+var lon=""
+var cityName=""
+var url2=""
 // functions
 
 function handleSearch(event) {
 	event.preventDefault()
 
-	var cityName = cityEl.value.trim()
+	cityName = cityEl.value.trim()
 	console.log(cityName)
 	if (!cityName) {
 		console.error("you need a valid city name please")
 	}
-	createURL();
+	// createURLcity(cityName);
 	citylist(cityName);
     getStoreCities();
     writeList();
-	getData();
+	fiveDay();
 }
 
-function createURL() {
+function createURLcity() {
 	var cityURL =
-		"https://api.openweathermap.org/data/2.5/weather?id=" +
-		cityName.textContent +
+		"https://api.openweathermap.org/data/2.5/forecast?q=" +
+		cityName +
 		"&appid=" +
 		APPID
 	console.log(cityURL)
@@ -79,9 +83,29 @@ function writeList() {
 		citylistEl.appendChild(li)
 	}
 }
+function fiveDay(){
+		fetch("https://api.openweathermap.org/data/2.5/forecast?q=London&appid=5529346d7fb490d9f9af910d01a074f0")
+			.then(function (response) {
+				return response.json();
+			})
+			.then(function (data) {
+				lat=data.city.coord.lat;
+				lon=data.city.coord.lon;
+				console.log("latitude= "+lat);
+				console.log("longitude= " +lon);
+				latLanURL()
+	})
+	}
+
+function latLanURL (){
+	url2= "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid="+APPID
+	console.log ("second url is "+ url2)
+	getData(url2)
+} 
+
 
 function getData(){ 
-fetch("https://api.openweathermap.org/data/2.5/onecall?lat=53.5&lon=2.6&appid=5529346d7fb490d9f9af910d01a074f0")
+fetch(url2)
 		.then(function (response) {
 			return response.json();
 		})
@@ -97,8 +121,8 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat=53.5&lon=2.6&appid=55
 			var iconURL="http://openweathermap.org/img/w/"+iconJS+".png"
 			iconEl.setAttribute("src", iconURL);
 			
-            date=data.current.dt;
-            dateEl.textContent=(date);
+            // date=date.textContent
+            dateEl.textContent= new Date().toLocaleDateString()
             temp=data.current.temp;
             console.log("temp: "+ temp)
             tempEl.textContent=(temp);
@@ -120,13 +144,13 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat=53.5&lon=2.6&appid=55
     }
 
 // button functions
-submitEl.addEventListener("click", handleSearch)
-citylistEl.addEventListener("click",function(event){
-	event.preventDefault;
-	cityName=event.target.textContent;
-	createURL();
-	getData();
+// submitEl.addEventListener("click", handleSearch)
+// citylistEl.addEventListener("click",function(event){
+// 	event.preventDefault;
+// 	cityName=event.target.textContent;
+// 	createURLcity();
+// 	fiveDay();
 
-})
-
-getData()
+// })
+fiveDay()
+// getData()
