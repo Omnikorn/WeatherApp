@@ -48,3 +48,9 @@ main{
     color: white
 }
 
+.image{
+    width: 10vw;
+    height: 10vh;
+    float: right;
+}
+

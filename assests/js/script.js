@@ -24,8 +24,11 @@ var lat=""
 var lon=""
 var cityName=""
 var url2=""
+var desciptionEl=document.querySelector("#description")
 // functions
 
+
+// handles search form function
 function handleSearch(event) {
 	event.preventDefault()
 
@@ -41,6 +44,8 @@ function handleSearch(event) {
 	fiveDay();
 }
 
+
+// creates URL from the city entered in search
 function createURLcity() {
 	var cityURL =
 		"https://api.openweathermap.org/data/2.5/forecast?q=" +
@@ -50,6 +55,7 @@ function createURLcity() {
 	console.log(cityURL)
 }
 
+// create list of cities visited
 function citylist(cityName) {
 	listOfCities.push(cityName)
 	console.log("list of cities include:: " + listOfCities)
@@ -59,6 +65,7 @@ function citylist(cityName) {
 	)
 }
 
+// gets a list of visited cities stored locally
 function getStoreCities() {
 	var storedCities = JSON.parse(
 		localStorage.getItem("visitedCities")
@@ -68,6 +75,7 @@ function getStoreCities() {
 	}
 }
 
+// displays the list of cities visited
 function writeList() {
 	// Clear todoList element and update todoCountSpan
 	citylistEl.innerHTML = ""
@@ -83,6 +91,8 @@ function writeList() {
 		citylistEl.appendChild(li)
 	}
 }
+
+// calls the five day forcast api- this provides the lat and log for the next function
 function fiveDay(){
 		fetch("https://api.openweathermap.org/data/2.5/forecast?q=London&appid=5529346d7fb490d9f9af910d01a074f0")
 			.then(function (response) {
@@ -97,6 +107,7 @@ function fiveDay(){
 	})
 	}
 
+	// creates a second url from the lat and lon to push into the second fetch api
 function latLanURL (){
 	url2= "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid="+APPID
 	console.log ("second url is "+ url2)
@@ -104,6 +115,7 @@ function latLanURL (){
 } 
 
 
+// current weather and uvi from lat and lon search
 function getData(){ 
 fetch(url2)
 		.then(function (response) {
@@ -115,7 +127,7 @@ fetch(url2)
             console.log(typeof(data));
             console.log(data.current.weather[0].description);
             palyEl=data.current.weather[0].description;
-            testEl.textContent=(palyEl);
+            desciptionEl.textContent=(palyEl);
 			iconJS=data.current['weather'][0]['icon'];
 			console.log("icone code= " + iconJS);
 			var iconURL="http://openweathermap.org/img/w/"+iconJS+".png"
