@@ -180,6 +180,7 @@ function getData() {
 			wind = data.current.wind_speed
 			console.log("wind: " + wind)
 			windEl.textContent = wind
+			
 			uvi = data.current.uvi
 			console.log("uvi: " + uvi)
 			uvEl.textContent = " " + uvi + " "
@@ -188,7 +189,7 @@ function getData() {
 			} else if (uvi < 6 && uvi >= 3) {
 				uvEl.setAttribute(
 					"style",
-					"background-color: yellow"
+					"background-color: yellow; color: black"
 				)
 			} else {
 				uvEl.setAttribute(
@@ -196,7 +197,7 @@ function getData() {
 					"background-color: green"
 				)
 			}
-			miracle7(data)
+			
 		})
 }
 

@@ -5,8 +5,12 @@
     font-family: 'Roboto', sans-serif;  
     min-height: 15vh;
     color: white;
-    text-align: left;
+    text-align: center;
     font-style: italic;
+}
+
+#test{
+    text-transform: uppercase;
 }
 
 .bkg{
