@@ -41,11 +41,13 @@ function handleSearch(event) {
 	console.log(cityName)
 	if (!cityName) {
 		console.error("you need a valid city name please")
-	}
+		}
+		testEl.textContent=cityName
 	createURLcity(cityName);
 	citylist(cityName)
 	getStoreCities()
 	writeList()
+	cityName.innerHTML=""
 	// fiveDay()
 }
 
@@ -82,7 +84,7 @@ function getStoreCities() {
 
 // displays the list of cities visited
 function writeList() {
-	// Clear the search field
+	// Clear the list field
 	citylistEl.innerHTML = ""
 
 	// Render a new li for each todo
@@ -109,7 +111,7 @@ function fiveDay() {
 			console.log("latitude= " + lat)
 			console.log("longitude= " + lon)
 			
-			miracle(data)
+			// miracle(data)
 			latLanURL()
 		})
 }
@@ -142,7 +144,7 @@ function latLanURL() {
 		lat +
 		"&lon=" +
 		lon +
-		"&appid=" +
+		"&units=metric&appid=" +
 		APPID
 	console.log("second url is " + url2)
 	getData(url2)
@@ -164,7 +166,7 @@ function getData() {
 			iconJS = data.current["weather"][0]["icon"]
 			console.log("icone code= " + iconJS)
 			var iconURL =
-				"http://openweathermap.org/img/w/" + iconJS + ".png"
+				"http://openweathermap.org/img/wn/" + iconJS + ".png"
 			iconEl.setAttribute("src", iconURL)
 
 			// date=date.textContent
@@ -194,8 +196,29 @@ function getData() {
 					"background-color: green"
 				)
 			}
+			miracle7(data)
 		})
 }
+
+function miracle7(data){
+	for (i=0; i<data.length; i++){
+	cardEl=document.createElement("li");
+	cardEl.classList="card card-body bg-light mb-3";
+	nameEl=document.createElement("h3");
+	// nameEl.textContent=data.list[i].dt_text;
+	// console.log("nameEl= " + nameEl);
+	// cardEl.appendChild(nameEl);
+	tempoEl=document.createElement("p");
+	tempoEl.textContent=("The tempreture is " + data.daily[i].temp.day + "c");
+	console.log("tempoEl= "+ tempEl);
+	cardEl.appendChild(tempoEl);
+	humidityEl=document.createElement("p");
+	humidityEl.textContent=("the humidity is " + data.daily[i].humidity + "%");
+	console.log("humidityEl= " + humidityEl);
+	cardEl.appendChild(humidityEl);
+	listEl.appendChild(cardEl);
+	}}
+
 
 // button functions
 submitEl.addEventListener("click", handleSearch)

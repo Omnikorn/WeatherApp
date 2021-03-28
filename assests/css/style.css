@@ -1,5 +1,8 @@
+
+
 .jmbotron-fluid{
-    background-color: #5c4283;  
+    background-color: #5c4283;
+    font-family: 'Roboto', sans-serif;  
     min-height: 15vh;
     color: white;
     text-align: left;
@@ -14,6 +17,7 @@
 }
 main{
     height: 100vh;
+    font-family: 'Roboto', sans-serif;
 }
 
 .form-inline{
@@ -49,7 +53,7 @@ main{
 }
 
 .image{
-    width: 10vw;
+    width: 7vw;
     height: 10vh;
     float: right;
 }
