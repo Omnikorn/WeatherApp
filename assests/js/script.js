@@ -34,7 +34,12 @@ var cityURL = ""
 var newIcon=""
 var newIconURL=""
 var imageseg
+
+
+
+
 // functions
+
 
 // handles search form function
 function handleSearch(event) {
@@ -192,7 +197,7 @@ function getData() {
 				".png"
 			iconEl.setAttribute("src", iconURL)
 
-			// date=date.textContent
+			
 			dateEl.textContent = new Date().toLocaleDateString()
 			temp = data.current.temp
 			console.log("temp: " + temp)
@@ -223,27 +228,6 @@ function getData() {
 		})
 }
 
-function miracle7(data) {
-	for (i = 0; i < data.length; i++) {
-		cardEl = document.createElement("li")
-		cardEl.classList = "card card-body bg-light mb-3"
-		nameEl = document.createElement("h3")
-		// nameEl.textContent=data.list[i].dt_text;
-		// console.log("nameEl= " + nameEl);
-		// cardEl.appendChild(nameEl);
-		tempoEl = document.createElement("p")
-		tempoEl.textContent =
-			"The tempreture is " + data.daily[i].temp.day + "c"
-		console.log("tempoEl= " + tempEl)
-		cardEl.appendChild(tempoEl)
-		humidityEl = document.createElement("p")
-		humidityEl.textContent =
-			"the humidity is " + data.daily[i].humidity + "%"
-		console.log("humidityEl= " + humidityEl)
-		cardEl.appendChild(humidityEl)
-		listEl.appendChild(cardEl)
-	}
-}
 
 // button functions
 submitEl.addEventListener("click", handleSearch)
@@ -252,9 +236,7 @@ citylistEl.addEventListener("click", function (event) {
 	cityName = event.target.textContent
 	testEl.textContent=cityName
 	createURLcity(cityName)
-	// fiveDay();
+	
 })
-// fiveDay()
-// getData()
+
 writeList(listOfCities)
-// handleSearch(listOfCities[listOfCities.length-1])
