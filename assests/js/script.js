@@ -31,6 +31,9 @@ var nameEl
 var tempoEl
 var humidityEl
 var cityURL = ""
+var newIcon=""
+var newIconURL=""
+var imageseg
 // functions
 
 // handles search form function
@@ -126,20 +129,29 @@ function miracle(data) {
 
 		nameEl = document.createElement("p")
 		nameEl.textContent =
-			"date" +
+			
 			new Date(data.list[i].dt_txt).toLocaleDateString()
 		console.log("nameEl= " + nameEl)
 		cardEl.appendChild(nameEl)
 
+		newIcon=data.list[i]["weather"][0]["icon"]
+		console.log("new icon value= "+newIcon)
+		newIconURL="http://openweathermap.org/img/wn/" +
+		newIcon + ".png"
+		imageseg=document.createElement("img");
+		imageseg.setAttribute("src", newIconURL);
+		cardEl.appendChild(imageseg)
+
+
 		tempoEl = document.createElement("p")
 		tempoEl.textContent =
-			"The tempreture is " + data.list[i].main.temp + "c"
+			"Temp: " + data.list[i].main.temp + "c"
 		console.log("tempoEl= " + tempEl)
 		cardEl.appendChild(tempoEl)
 
 		humidityEl = document.createElement("p")
 		humidityEl.textContent =
-			"the humidity is " + data.list[i].main.humidity + "%"
+			"Humidity: " + data.list[i].main.humidity + "%"
 		console.log("humidityEl= " + humidityEl)
 		cardEl.appendChild(humidityEl)
 		listEl.appendChild(cardEl)
