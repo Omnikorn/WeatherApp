@@ -1,6 +1,8 @@
 # WeatherApp
 This is a weather dashboard 
 
+![image](https://user-images.githubusercontent.com/75341811/112758973-e27d9e00-8fe8-11eb-8e70-90ab4b2d9876.png)
+
 The user is presented with a simple interface consisting of a single search field. Once a city is entered in the search field the current weather conditions for that city are presented in the centre of the screen below which 5 cards are displayed with the weather forecast for the next 5 days.
 Included int the current weather data is the UV index with a colour changing background (green for low, amber for moderate and red for high) (ps it has never gone beyond green here in rainy Manchester UK!!)
 The city is then added to a list of previously visited cities which are store locally on the user’s browser. 
