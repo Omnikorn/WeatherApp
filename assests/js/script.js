@@ -250,6 +250,7 @@ submitEl.addEventListener("click", handleSearch)
 citylistEl.addEventListener("click", function (event) {
 	event.preventDefault
 	cityName = event.target.textContent
+	testEl.textContent=cityName
 	createURLcity(cityName)
 	// fiveDay();
 })
