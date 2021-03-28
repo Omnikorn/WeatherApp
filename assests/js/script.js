@@ -56,7 +56,7 @@ function createURLcity() {
 	cityURL =
 		"https://api.openweathermap.org/data/2.5/forecast?q=" +
 		cityName +
-		"&appid=" +
+		"&units=metric&appid=" +
 		APPID
 	console.log(cityURL)
 	fiveDay(cityURL)
