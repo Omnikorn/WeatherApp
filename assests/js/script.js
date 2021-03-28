@@ -26,28 +26,28 @@ var cityName = ""
 var url2 = ""
 var desciptionEl = document.querySelector("#description")
 var listEl = document.querySelector("#list")
-var cardEl;
-var nameEl;
-var tempoEl;
-var humidityEl;
-var cityURL=""
+var cardEl
+var nameEl
+var tempoEl
+var humidityEl
+var cityURL = ""
 // functions
 
 // handles search form function
 function handleSearch(event) {
 	event.preventDefault()
-
 	cityName = cityEl.value.trim()
+	cityEl.value = ""
 	console.log(cityName)
 	if (!cityName) {
 		console.error("you need a valid city name please")
-		}
-		testEl.textContent=cityName
-	createURLcity(cityName);
+	}
+	testEl.textContent = cityName
+	createURLcity(cityName)
 	citylist(cityName)
 	getStoreCities()
-	writeList()
-	cityName.innerHTML=""
+	writeList(listOfCities)
+	cityName.innerHTML = ""
 	// fiveDay()
 }
 
@@ -83,13 +83,13 @@ function getStoreCities() {
 }
 
 // displays the list of cities visited
-function writeList() {
+function writeList(visitedCities) {
 	// Clear the list field
 	citylistEl.innerHTML = ""
 
 	// Render a new li for each todo
-	for (var i = 0; i < cities.length; i++) {
-		var city = cities[i]
+	for (var i = 0; i < visitedCities.length; i++) {
+		var city = visitedCities[i]
 
 		var li = document.createElement("li")
 		li.textContent = city
@@ -106,36 +106,45 @@ function fiveDay() {
 			return response.json()
 		})
 		.then(function (data) {
-			lat = data.city.coord.lat;
-			lon = data.city.coord.lon;
+			lat = data.city.coord.lat
+			lon = data.city.coord.lon
 			console.log("latitude= " + lat)
 			console.log("longitude= " + lon)
-			
-			// miracle(data)
+
+			miracle(data)
 			latLanURL()
 		})
 }
 
 // function to display 5 day forcast
-function miracle(data){
-	for (i=5; i<data.length; i=i+8){
-	cardEl=document.createElement("li");
-	cardEl.classList="card card-body bg-light mb-3";
-	nameEl=document.createElement("h3");
-	nameEl.textContent=data.list[i].dt_text;
-	console.log("nameEl= " + nameEl);
-	cardEl.appendChild(nameEl);
-	tempoEl=document.createElement("p");
-	tempoEl.textContent=("The tempreture is " + data.list[i].main.temp + "c");
-	console.log("tempoEl= "+ tempEl);
-	cardEl.appendChild(tempoEl);
-	humidityEl=document.createElement("p");
-	humidityEl.textContent=("the humidity is " + data.list[i].main.humidity + "%");
-	console.log("humidityEl= " + humidityEl);
-	cardEl.appendChild(humidityEl);
-	listEl.appendChild(cardEl);
-	}}
+function miracle(data) {
+	listEl.innerHTML = ""
+	console.log("after line 120 data:" + JSON.stringify(data))
+	for (i = 5; i < data.list.length; i = i + 8) {
+		cardEl = document.createElement("li")
+		cardEl.classList = "card card-body bg-light mb-3"
 
+		nameEl = document.createElement("p")
+		nameEl.textContent =
+			"date" +
+			new Date(data.list[i].dt_txt).toLocaleDateString()
+		console.log("nameEl= " + nameEl)
+		cardEl.appendChild(nameEl)
+
+		tempoEl = document.createElement("p")
+		tempoEl.textContent =
+			"The tempreture is " + data.list[i].main.temp + "c"
+		console.log("tempoEl= " + tempEl)
+		cardEl.appendChild(tempoEl)
+
+		humidityEl = document.createElement("p")
+		humidityEl.textContent =
+			"the humidity is " + data.list[i].main.humidity + "%"
+		console.log("humidityEl= " + humidityEl)
+		cardEl.appendChild(humidityEl)
+		listEl.appendChild(cardEl)
+	}
+}
 
 // creates a second url from the lat and lon to push into the second fetch api
 function latLanURL() {
@@ -166,7 +175,9 @@ function getData() {
 			iconJS = data.current["weather"][0]["icon"]
 			console.log("icone code= " + iconJS)
 			var iconURL =
-				"http://openweathermap.org/img/wn/" + iconJS + ".png"
+				"http://openweathermap.org/img/wn/" +
+				iconJS +
+				".png"
 			iconEl.setAttribute("src", iconURL)
 
 			// date=date.textContent
@@ -180,7 +191,7 @@ function getData() {
 			wind = data.current.wind_speed
 			console.log("wind: " + wind)
 			windEl.textContent = wind
-			
+
 			uvi = data.current.uvi
 			console.log("uvi: " + uvi)
 			uvEl.textContent = " " + uvi + " "
@@ -197,38 +208,40 @@ function getData() {
 					"background-color: green"
 				)
 			}
-			
 		})
 }
 
-function miracle7(data){
-	for (i=0; i<data.length; i++){
-	cardEl=document.createElement("li");
-	cardEl.classList="card card-body bg-light mb-3";
-	nameEl=document.createElement("h3");
-	// nameEl.textContent=data.list[i].dt_text;
-	// console.log("nameEl= " + nameEl);
-	// cardEl.appendChild(nameEl);
-	tempoEl=document.createElement("p");
-	tempoEl.textContent=("The tempreture is " + data.daily[i].temp.day + "c");
-	console.log("tempoEl= "+ tempEl);
-	cardEl.appendChild(tempoEl);
-	humidityEl=document.createElement("p");
-	humidityEl.textContent=("the humidity is " + data.daily[i].humidity + "%");
-	console.log("humidityEl= " + humidityEl);
-	cardEl.appendChild(humidityEl);
-	listEl.appendChild(cardEl);
-	}}
-
+function miracle7(data) {
+	for (i = 0; i < data.length; i++) {
+		cardEl = document.createElement("li")
+		cardEl.classList = "card card-body bg-light mb-3"
+		nameEl = document.createElement("h3")
+		// nameEl.textContent=data.list[i].dt_text;
+		// console.log("nameEl= " + nameEl);
+		// cardEl.appendChild(nameEl);
+		tempoEl = document.createElement("p")
+		tempoEl.textContent =
+			"The tempreture is " + data.daily[i].temp.day + "c"
+		console.log("tempoEl= " + tempEl)
+		cardEl.appendChild(tempoEl)
+		humidityEl = document.createElement("p")
+		humidityEl.textContent =
+			"the humidity is " + data.daily[i].humidity + "%"
+		console.log("humidityEl= " + humidityEl)
+		cardEl.appendChild(humidityEl)
+		listEl.appendChild(cardEl)
+	}
+}
 
 // button functions
 submitEl.addEventListener("click", handleSearch)
-citylistEl.addEventListener("click",function(event){
-	event.preventDefault;
-	cityName=event.target.textContent;
-	createURLcity(cityName);
+citylistEl.addEventListener("click", function (event) {
+	event.preventDefault
+	cityName = event.target.textContent
+	createURLcity(cityName)
 	// fiveDay();
-
 })
 // fiveDay()
 // getData()
+writeList(listOfCities)
+// handleSearch(listOfCities[listOfCities.length-1])
