@@ -30,6 +30,7 @@ var cardEl;
 var nameEl;
 var tempoEl;
 var humidityEl;
+var cityURL=""
 // functions
 
 // handles search form function
@@ -41,21 +42,22 @@ function handleSearch(event) {
 	if (!cityName) {
 		console.error("you need a valid city name please")
 	}
-	// createURLcity(cityName);
+	createURLcity(cityName);
 	citylist(cityName)
 	getStoreCities()
 	writeList()
-	fiveDay()
+	// fiveDay()
 }
 
 // creates URL from the city entered in search
 function createURLcity() {
-	var cityURL =
+	cityURL =
 		"https://api.openweathermap.org/data/2.5/forecast?q=" +
 		cityName +
 		"&appid=" +
 		APPID
 	console.log(cityURL)
+	fiveDay(cityURL)
 }
 
 // create list of cities visited
@@ -80,7 +82,7 @@ function getStoreCities() {
 
 // displays the list of cities visited
 function writeList() {
-	// Clear todoList element and update todoCountSpan
+	// Clear the search field
 	citylistEl.innerHTML = ""
 
 	// Render a new li for each todo
@@ -97,9 +99,7 @@ function writeList() {
 
 // calls the five day forcast api- this provides the lat and log for the next function
 function fiveDay() {
-	fetch(
-		"https://api.openweathermap.org/data/2.5/forecast?q=London&appid=5529346d7fb490d9f9af910d01a074f0"
-	)
+	fetch(cityURL)
 		.then(function (response) {
 			return response.json()
 		})
@@ -198,13 +198,13 @@ function getData() {
 }
 
 // button functions
-// submitEl.addEventListener("click", handleSearch)
-// citylistEl.addEventListener("click",function(event){
-// 	event.preventDefault;
-// 	cityName=event.target.textContent;
-// 	createURLcity();
-// 	fiveDay();
+submitEl.addEventListener("click", handleSearch)
+citylistEl.addEventListener("click",function(event){
+	event.preventDefault;
+	cityName=event.target.textContent;
+	createURLcity(cityName);
+	// fiveDay();
 
-// })
-fiveDay()
+})
+// fiveDay()
 // getData()
